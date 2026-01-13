@@ -1,0 +1,28 @@
+{
+  "query": "SELECT * FROM users; SELECT * FROM trial_applications;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3g1PMWH6nQZxose.root --database DgK5Sfn2PvKizzzMAs6JDx --execute SELECT * FROM users; SELECT * FROM trial_applications;",
+  "rows": [
+    {
+      "id": "1",
+      "openId": "WwpbwwzoM4oskVxUH8uuug",
+      "name": "Qian Zuo",
+      "email": "jackyzuo16@gmail.com",
+      "loginMethod": "google",
+      "role": "admin",
+      "createdAt": "2026-01-12 04:10:09",
+      "updatedAt": "2026-01-12 05:50:28",
+      "lastSignedIn": "2026-01-12 05:50:29"
+    }
+  ],
+  "messages": [
+    "id\thospital_name\tcontact_name\tcontact_phone\tcontact_email\tdepartment\tposition\tproduct_interest\thospital_scale\trequirements\tstatus\tnotes\tcreated_at\tupdated_at",
+    "1\t测试医院\t张三\t13800138000\tzhangsan@test.com\t医务处\t主任\tqc\tlarge\t需要病历质控系统\tpending\tNULL\t2026-01-12 04:10:38\t2026-01-12 04:10:38",
+    "2\t测试医院2\t李四\t13900139000\tNULL\tNULL\tNULL\tboth\tNULL\tNULL\tpending\tNULL\t2026-01-12 04:10:39\t2026-01-12 04:10:39",
+    "3\t测试医院4\t赵六\t13600136000\tNULL\tNULL\tNULL\tqc\tNULL\tNULL\tcontacted\t已联系客户\t2026-01-12 04:10:39\t2026-01-12 04:10:39",
+    "4\t事实上\t点点滴滴\t收到娃娃\tNULL\t\t\tqc\tNULL\t\tpending\tNULL\t2026-01-12 04:14:36\t2026-01-12 04:14:36",
+    "5\t打工\t的风格的润肤乳色\t为而为热污染\tNULL\t\t\tqc\tNULL\t\tpending\tNULL\t2026-01-12 04:15:26\t2026-01-12 04:15:26"
+  ],
+  "stdout": "id\topenId\tname\temail\tloginMethod\trole\tcreatedAt\tupdatedAt\tlastSignedIn\n1\tWwpbwwzoM4oskVxUH8uuug\tQian Zuo\tjackyzuo16@gmail.com\tgoogle\tadmin\t2026-01-12 04:10:09\t2026-01-12 05:50:28\t2026-01-12 05:50:29\nid\thospital_name\tcontact_name\tcontact_phone\tcontact_email\tdepartment\tposition\tproduct_interest\thospital_scale\trequirements\tstatus\tnotes\tcreated_at\tupdated_at\n1\t测试医院\t张三\t13800138000\tzhangsan@test.com\t医务处\t主任\tqc\tlarge\t需要病历质控系统\tpending\tNULL\t2026-01-12 04:10:38\t2026-01-12 04:10:38\n2\t测试医院2\t李四\t13900139000\tNULL\tNULL\tNULL\tboth\tNULL\tNULL\tpending\tNULL\t2026-01-12 04:10:39\t2026-01-12 04:10:39\n3\t测试医院4\t赵六\t13600136000\tNULL\tNULL\tNULL\tqc\tNULL\tNULL\tcontacted\t已联系客户\t2026-01-12 04:10:39\t2026-01-12 04:10:39\n4\t事实上\t点点滴滴\t收到娃娃\tNULL\t\t\tqc\tNULL\t\tpending\tNULL\t2026-01-12 04:14:36\t2026-01-12 04:14:36\n5\t打工\t的风格的润肤乳色\t为而为热污染\tNULL\t\t\tqc\tNULL\t\tpending\tNULL\t2026-01-12 04:15:26\t2026-01-12 04:15:26\n",
+  "stderr": "",
+  "execution_time_ms": 494
+}
