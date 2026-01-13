@@ -134,7 +134,7 @@ export default function QCProduct() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <img 
-                src="/images/hero-medical-ai.png" 
+                src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/hero-medical-ai.png" 
                 alt="AI病历质控系统界面" 
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
@@ -239,7 +239,7 @@ export default function QCProduct() {
                     </div>
                     <div>
                       <img 
-                        src="/images/ai-workflow-new.png" 
+                        src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/ai-workflow-new.png" 
                         alt="AI智能工作流" 
                         className="w-full h-auto rounded-xl"
                       />
@@ -287,7 +287,7 @@ export default function QCProduct() {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <img 
-                        src="/images/ai-brain-network.png" 
+                        src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/ai-brain-network.png.png" 
                         alt="AI分析引擎" 
                         className="w-full h-auto rounded-xl"
                       />
@@ -330,7 +330,7 @@ export default function QCProduct() {
                   <div className="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
                       <img 
-                        src="/images/data-dashboard.png" 
+                        src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/data-dashboard.png" 
                         alt="数据仪表盘" 
                         className="w-full h-auto rounded-xl"
                       />

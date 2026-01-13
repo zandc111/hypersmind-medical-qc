@@ -8,7 +8,7 @@
  */
 
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+// import { getLoginUrl } from "@/const";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
@@ -183,7 +183,7 @@ export default function Home() {
             <div className={`relative ${isVisible ? 'animate-fade-in-up' : 'opacity-0'} delay-200`}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/images/hero-medical-ai.png" 
+                  src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/hero-medical-ai.png" 
                   alt="AI病历质控系统界面" 
                   className="w-full h-auto"
                 />
@@ -381,7 +381,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <img 
-                src="/images/ai-brain-network.png" 
+                src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/ai-brain-network.png" 
                 alt="AI神经网络" 
                 className="w-full h-auto rounded-2xl shadow-xl"
               />
@@ -525,7 +525,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <img 
-                src="/images/data-dashboard.png" 
+                src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/data-dashboard.png" 
                 alt="质控数据仪表盘" 
                 className="w-full h-auto rounded-2xl shadow-xl"
               />

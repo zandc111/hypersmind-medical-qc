@@ -129,7 +129,7 @@ export default function GenerationProduct() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <img 
-                src="/images/voice-recording-medical.png" 
+                src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/voice-recording-medical.png" 
                 alt="云诊精灵AI助手" 
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
@@ -235,7 +235,7 @@ export default function GenerationProduct() {
                     </div>
                     <div>
                       <img 
-                        src="/images/ai-medical-assistant.png" 
+                        src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/ai-medical-assistant.png" 
                         alt="AI诊间问诊" 
                         className="w-full h-auto rounded-xl"
                       />
