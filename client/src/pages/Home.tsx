@@ -826,11 +826,11 @@ export default function Home() {
                   </div>
                 </div>
                 <div class="mr-16">
-                  <div className="text-sm text-slate-500 mb-1 font-medium">联系人：左总</div>
+                  <div className="text-sm text-slate-500 mb-1 font-medium">联系人：左先生</div>
                   <div class="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
                     <img src="/images/contact/contact-wx.JPG" alt="联系人"></img>
                   </div>
-                  <div className="text-sm text-slate-500 mb-1 font-medium">联系人：王总</div>
+                  <div className="text-sm text-slate-500 mb-1 font-medium">联系人：王先生</div>
                   <div class="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
                     <img src="/images/contact/contact.png" alt="联系人"></img>
                   </div>
