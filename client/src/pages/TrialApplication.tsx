@@ -61,7 +61,7 @@ export default function TrialApplication() {
                     <Brain className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-bold text-lg text-slate-900">超脑AI质控</div>
+                    <div className="font-bold text-lg text-slate-900">超脑智能</div>
                     <div className="text-xs text-slate-600">专注医疗AI大模型</div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export default function TrialApplication() {
                   <Brain className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="font-bold text-lg text-slate-900">超脑AI质控</div>
+                  <div className="font-bold text-lg text-slate-900">超脑智能</div>
                   <div className="text-xs text-slate-600">专注医疗AI大模型</div>
                 </div>
               </div>

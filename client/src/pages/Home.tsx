@@ -62,7 +62,7 @@ export default function Home() {
                 <Brain className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="font-bold text-lg text-slate-900">超脑AI质控</div>
+                <div className="font-bold text-lg text-slate-900">超脑智能</div>
                 <div className="text-xs text-slate-600">专注医疗AI大模型</div>
               </div>
             </div>
@@ -93,6 +93,8 @@ export default function Home() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              <a href="#results" className="text-slate-700 hover:text-blue-600 transition-colors">落地效果</a>
+              <a href="#trial" className="text-slate-700 hover:text-blue-600 transition-colors">实施步骤</a>
               <a href="#future" className="text-slate-700 hover:text-blue-600 transition-colors">未来规划</a>
               <a href="#contact" className="text-slate-700 hover:text-blue-600 transition-colors">联系我们</a>
               {user?.role === 'admin' && (
@@ -142,7 +144,7 @@ export default function Home() {
                 <span className="block text-blue-600 mt-2">让质控更智能</span>
               </h1>
               <p className="text-xl text-slate-600 leading-relaxed">
-                全流程智能质控解决方案 · 已服务多家医院落地
+                全流程智能质控解决方案 · 已服务200多家医院
               </p>
               
               {/* Top-right: Key metrics */}
@@ -583,7 +585,7 @@ export default function Home() {
       </section>
 
       {/* Quick Trial Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-cyan-600 text-white">
+      <section id="trial" className="py-20 bg-gradient-to-br from-blue-600 to-cyan-600 text-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">快速试用，即刻体验</h2>
@@ -804,22 +806,34 @@ export default function Home() {
 
             <div className="bg-slate-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">联系我们</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">总部地址</div>
-                  <div className="text-slate-700">上海浦东新区御桥路1220弄3号1018室</div>
+              <div className="flex items-center justify-between">
+                <div className="space-y-4">
+                  <div>
+                    <div className="text-sm text-slate-500 mb-1">总部地址</div>
+                    <div className="text-slate-700">上海浦东新区御桥路1220弄3号1018室</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-slate-500 mb-1">分公司</div>
+                    <div className="text-slate-700">北京 · 江苏 · 浙江 · 成都</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-slate-500 mb-1">联系电话</div>
+                    <div className="text-slate-700 font-medium">18521362982</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-slate-500 mb-1">邮箱联系</div>
+                    <div className="text-slate-700 font-medium">junfengwang@allianity.com</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">分公司</div>
-                  <div className="text-slate-700">北京 · 江苏 · 浙江 · 成都</div>
-                </div>
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">联系电话</div>
-                  <div className="text-slate-700 font-medium">18521362982</div>
-                </div>
-                <div>
-                  <div className="text-sm text-slate-500 mb-1">邮箱联系</div>
-                  <div className="text-slate-700 font-medium">junfengwang@allianity.com</div>
+                <div class="mr-16">
+                  <div className="text-sm text-slate-500 mb-1 font-medium">联系人：左总</div>
+                  <div class="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <img src="/images/contact/contact-wx.JPG" alt="联系人"></img>
+                  </div>
+                  <div className="text-sm text-slate-500 mb-1 font-medium">联系人：王总</div>
+                  <div class="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <img src="/images/contact/contact.png" alt="联系人"></img>
+                  </div>
                 </div>
               </div>
               <Link href="/trial-application">
@@ -841,7 +855,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
                   <Brain className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-bold text-white">超脑AI质控</span>
+                <span className="font-bold text-white">超脑智能</span>
               </div>
               <p className="text-sm text-slate-400">专注医疗AI大模型<br/>让质控更智能</p>
             </div>
