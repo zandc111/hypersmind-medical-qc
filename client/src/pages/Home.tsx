@@ -8,7 +8,6 @@
  */
 
 import { useAuth } from "@/_core/hooks/useAuth";
-// import { getLoginUrl } from "@/const";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
@@ -97,6 +96,7 @@ export default function Home() {
               <a href="#trial" className="text-slate-700 hover:text-blue-600 transition-colors">实施步骤</a>
               <a href="#future" className="text-slate-700 hover:text-blue-600 transition-colors">未来规划</a>
               <a href="#contact" className="text-slate-700 hover:text-blue-600 transition-colors">联系我们</a>
+              <a href="https://aiwork.sicbcore.com/" target="_blank" rel="noopener noreferrer" className="text-slate-700 hover:text-blue-600 transition-colors">体验平台</a>
               {user?.role === 'admin' && (
                 <Link href="/admin/applications" className="text-slate-700 hover:text-blue-600 transition-colors">
                   管理后台
@@ -115,9 +115,11 @@ export default function Home() {
                   </Button>
                 </div>
               ) : (
-                <Button variant="outline" onClick={() => window.location.href = getLoginUrl()}>
-                  登录
-                </Button>
+                <Link href="/login">
+                  <Button variant="outline">
+                    登录
+                  </Button>
+                </Link>
               )}
               <Link href="/trial-application">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -185,7 +187,7 @@ export default function Home() {
             <div className={`relative ${isVisible ? 'animate-fade-in-up' : 'opacity-0'} delay-200`}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/hero-medical-ai.png" 
+                  src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/gw_images/hero-medical-ai.png"  
                   alt="AI病历质控系统界面" 
                   className="w-full h-auto"
                 />
@@ -855,7 +857,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
                   <Brain className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-bold text-white">超脑智能</span>
+                <span className="font-bold text-white">超脑AI质控</span>
               </div>
               <p className="text-sm text-slate-400">专注医疗AI大模型<br/>让质控更智能</p>
             </div>

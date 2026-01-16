@@ -11,8 +11,15 @@ export const users = mysqlTable("users", {
    * Use this for relations between tables.
    */
   id: int("id").autoincrement().primaryKey(),
+  /** Username for password-based authentication. Unique per user. */
+  username: varchar("username", { length: 50 }).unique(),
+  /** Hashed password for password-based authentication. */
+  passwordHash: varchar("passwordHash", { length: 255 }),
+  /** Manus OAuth identifier (openId) - optional for backward compatibility. */
+  openId: varchar("openId", { length: 64 }).unique(),
   name: text("name"),
-  email: varchar("email", { length: 320 }).unique(),
+  email: varchar("email", { length: 320 }),
+  loginMethod: varchar("loginMethod", { length: 64 }),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),

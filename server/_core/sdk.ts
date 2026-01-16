@@ -268,9 +268,16 @@ class SDKServer {
 
     const sessionUserId = session.openId;
     const signedInAt = new Date();
-    let user = await db.getUserByOpenId(sessionUserId);
+    
+    // Try to get user by ID first (for username/password auth)
+    let user = await db.getUserById(parseInt(sessionUserId));
+    
+    // If not found by ID, try by openId (for OAuth compatibility)
+    if (!user) {
+      user = await db.getUserByOpenId(sessionUserId);
+    }
 
-    // If user not in DB, sync from OAuth server automatically
+    // If user not in DB, try to sync from OAuth server (backward compatibility)
     if (!user) {
       try {
         const userInfo = await this.getUserInfoWithJwt(sessionCookie ?? "");
@@ -284,7 +291,7 @@ class SDKServer {
         user = await db.getUserByOpenId(userInfo.openId);
       } catch (error) {
         console.error("[Auth] Failed to sync user from OAuth:", error);
-        throw ForbiddenError("Failed to sync user info");
+        // Don't throw error here, user might be using username/password auth
       }
     }
 
@@ -292,10 +299,16 @@ class SDKServer {
       throw ForbiddenError("User not found");
     }
 
-    await db.upsertUser({
-      openId: user.openId,
-      lastSignedIn: signedInAt,
-    });
+    // Update last signed in for username/password users
+    if (user.username) {
+      await db.updateUserLastSignedIn(user.id);
+    } else if (user.openId) {
+      // Update for OAuth users
+      await db.upsertUser({
+        openId: user.openId,
+        lastSignedIn: signedInAt,
+      });
+    }
 
     return user;
   }

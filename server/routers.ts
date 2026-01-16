@@ -5,12 +5,116 @@ import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { z } from "zod";
 import * as db from "./db";
 import { notifyOwner } from "./_core/notification";
+import bcrypt from "bcrypt";
+import { sdk } from "./_core/sdk";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
+    
+    // Register new user with username/password
+    register: publicProcedure
+      .input(
+        z.object({
+          username: z.string().min(3, "用户名至少3个字符").max(50, "用户名最多50个字符"),
+          password: z.string().min(6, "密码至少6个字符"),
+          name: z.string().optional(),
+          email: z.string().email("邮箱格式不正确").optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        // Check if username already exists
+        const existingUser = await db.getUserByUsername(input.username);
+        if (existingUser) {
+          throw new Error("用户名已存在");
+        }
+
+        // Hash password
+        const passwordHash = await bcrypt.hash(input.password, 10);
+
+        // Create user
+        await db.createUserWithPassword({
+          username: input.username,
+          passwordHash,
+          name: input.name,
+          email: input.email,
+          role: "user",
+        });
+
+        // Get created user
+        const user = await db.getUserByUsername(input.username);
+        if (!user) {
+          throw new Error("用户创建失败");
+        }
+
+        // Create session token using user.id as openId
+        const sessionToken = await sdk.createSessionToken(user.id.toString(), {
+          name: user.name || user.username || undefined,
+        });
+
+        // Set session cookie
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, sessionToken, cookieOptions);
+
+        return {
+          success: true,
+          user: {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+        };
+      }),
+
+    // Login with username/password
+    login: publicProcedure
+      .input(
+        z.object({
+          username: z.string(),
+          password: z.string(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        // Get user by username
+        const user = await db.getUserByUsername(input.username);
+        if (!user || !user.passwordHash) {
+          throw new Error("用户名或密码错误");
+        }
+
+        // Verify password
+        const isValid = await bcrypt.compare(input.password, user.passwordHash);
+        if (!isValid) {
+          throw new Error("用户名或密码错误");
+        }
+
+        // Update last signed in
+        await db.updateUserLastSignedIn(user.id);
+
+        // Create session token using user.id as openId
+        const sessionToken = await sdk.createSessionToken(user.id.toString(), {
+          name: user.name || user.username || undefined,
+        });
+
+        // Set session cookie
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, sessionToken, cookieOptions);
+
+        return {
+          success: true,
+          user: {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+        };
+      }),
+
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });

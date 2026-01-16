@@ -9,6 +9,8 @@ import QCProduct from "./pages/QCProduct";
 import GenerationProduct from "./pages/GenerationProduct";
 import TrialApplication from "./pages/TrialApplication";
 import AdminApplications from "./pages/AdminApplications";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -19,6 +21,8 @@ function Router() {
       <Route path={"/product/generation"} component={GenerationProduct} />
       <Route path={"/trial-application"} component={TrialApplication} />
       <Route path={"/admin/applications"} component={AdminApplications} />
+      <Route path={"/login"} component={Login} />
+      <Route path={"/register"} component={Register} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

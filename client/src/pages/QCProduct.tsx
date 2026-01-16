@@ -141,9 +141,9 @@ export default function QCProduct() {
             </div>
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">为什么选择超脑智能?</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">为什么选择超脑AI质控?</h3>
                 <p className="text-slate-600 leading-relaxed">
-                  传统病历质控依赖人工抽检和规则引擎,覆盖率低、效率低、准确性差。超脑智能系统基于医疗大模型,实现全流程AI自动化,从病历抓取到报表生成无需人工干预,质控覆盖率达到100%,效率提升10倍以上。
+                  传统病历质控依赖人工抽检和规则引擎,覆盖率低、效率低、准确性差。超脑AI质控系统基于医疗大模型,实现全流程AI自动化,从病历抓取到报表生成无需人工干预,质控覆盖率达到100%,效率提升10倍以上。
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -655,7 +655,7 @@ export default function QCProduct() {
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
                 <Brain className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-white text-lg">超脑智能</span>
+              <span className="font-bold text-white text-lg">超脑AI质控</span>
             </div>
             <p className="text-sm text-slate-400 mb-6">专注医疗AI大模型 · 让质控更智能</p>
             <div className="flex justify-center gap-6 text-sm mb-6">
