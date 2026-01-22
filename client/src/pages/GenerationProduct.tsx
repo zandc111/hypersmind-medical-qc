@@ -3,8 +3,10 @@
  * Design Philosophy: Neo-Medical
  */
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Brain, 
@@ -35,6 +37,8 @@ import {
 import { Link } from "wouter";
 
 export default function GenerationProduct() {
+  const [showVideo, setShowVideo] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Navigation */}
@@ -84,11 +88,25 @@ export default function GenerationProduct() {
                 立即体验
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8" onClick={() => setShowVideo(true)}>
                 <Play className="w-5 h-5 mr-2" />
                 观看演示
               </Button>
             </div>
+
+            <Dialog open={showVideo} onOpenChange={setShowVideo}>
+              <DialogContent className="sm:max-w-[90vw] max-w-[95vw]">
+                <div className="m-2">
+                  <video 
+                    src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/%E8%B6%85%E8%84%91%E6%9D%BE%E6%9D%89AI%E7%97%85%E5%8E%86%E8%B4%A8%E6%8E%A7%E7%B3%BB%E7%BB%9F%E6%BC%94%E7%A4%BAV1.7.mp4" 
+                    controls 
+                    autoPlay 
+                    className="w-full h-auto rounded-lg"
+                    style={{ maxHeight: '80vh' }}
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
 
           </div>
         </div>

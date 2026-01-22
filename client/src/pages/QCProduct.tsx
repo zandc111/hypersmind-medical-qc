@@ -3,8 +3,10 @@
  * Design Philosophy: Neo-Medical
  */
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Brain, 
@@ -37,6 +39,8 @@ import {
 import { Link } from "wouter";
 
 export default function QCProduct() {
+  const [showVideo, setShowVideo] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Navigation */}
@@ -58,9 +62,11 @@ export default function QCProduct() {
               <Link href="/">
                 <a className="text-slate-600 hover:text-slate-900 transition-colors">返回首页</a>
               </Link>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                申请试用
-              </Button>
+              <Link href="/trial-application">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  申请试用
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -82,11 +88,16 @@ export default function QCProduct() {
               全流程AI驱动，从病历抓取到报表生成，2小时即可部署上线
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8">
-                立即试用
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8">
+              <Link href="/trial-application">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8">
+                  立即试用
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+                {/* <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  申请试用
+                </Button> */}
+              </Link>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8" onClick={() => setShowVideo(true)}>
                 <Play className="w-5 h-5 mr-2" />
                 观看演示
               </Button>
@@ -95,6 +106,21 @@ export default function QCProduct() {
                 下载产品手册
               </Button>
             </div>
+
+            <Dialog open={showVideo} onOpenChange={setShowVideo}>
+              <DialogContent className="sm:max-w-[90vw] max-w-[95vw]">
+                <div className="m-2">
+                  <video 
+                    src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/%E8%B6%85%E8%84%91%E6%9D%BE%E6%9D%89AI%E7%97%85%E5%8E%86%E8%B4%A8%E6%8E%A7%E7%B3%BB%E7%BB%9F%E6%BC%94%E7%A4%BAV1.7.mp4" 
+                    controls 
+                    autoPlay 
+                    className="w-full h-auto rounded-lg"
+                    style={{ maxHeight: '80vh' }}
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+
           </div>
         </div>
       </section>

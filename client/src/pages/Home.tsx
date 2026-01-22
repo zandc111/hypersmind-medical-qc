@@ -11,6 +11,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 // import { getLoginUrl } from "@/const";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
 import { Link } from "wouter";
 import {
   DropdownMenu,
@@ -46,6 +47,7 @@ export default function Home() {
   let { user, loading, error, isAuthenticated, logout } = useAuth();
 
   const [isVisible, setIsVisible] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -97,6 +99,7 @@ export default function Home() {
               <a href="#trial" className="text-slate-700 hover:text-blue-600 transition-colors">实施步骤</a>
               <a href="#future" className="text-slate-700 hover:text-blue-600 transition-colors">未来规划</a>
               <a href="#contact" className="text-slate-700 hover:text-blue-600 transition-colors">联系我们</a>
+              <a href="https://aiwork.sicbcore.com/" target="_blank" className="text-slate-700 hover:text-blue-600 transition-colors">体验平台</a>
               {user?.role === 'admin' && (
                 <Link href="/admin/applications" className="text-slate-700 hover:text-blue-600 transition-colors">
                   管理后台
@@ -175,10 +178,25 @@ export default function Home() {
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50 text-lg px-8">
+                <Button size="lg" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50 text-lg px-8" onClick={() => setShowVideo(true)}>
                   观看演示
                 </Button>
               </div>
+
+              <Dialog open={showVideo} onOpenChange={setShowVideo}>
+                <DialogContent className="sm:max-w-[90vw] max-w-[95vw]">
+                  <div className="m-2">
+                    <video 
+                      src="https://chaonao-aiwork.oss-cn-shanghai.aliyuncs.com/songshan/%E8%B6%85%E8%84%91%E6%9D%BE%E6%9D%89AI%E7%97%85%E5%8E%86%E8%B4%A8%E6%8E%A7%E7%B3%BB%E7%BB%9F%E6%BC%94%E7%A4%BAV1.7.mp4" 
+                      controls 
+                      autoPlay 
+                      className="w-full h-auto rounded-lg"
+                      style={{ maxHeight: '80vh' }}
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+
             </div>
 
             {/* Right: Visual element */}
