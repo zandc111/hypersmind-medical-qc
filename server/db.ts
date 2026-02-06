@@ -19,8 +19,8 @@ export async function getDb() {
 }
 
 export async function upsertUser(user: InsertUser): Promise<void> {
-  if (!user.email) {
-    throw new Error("User email is required for upsert");
+  if (!user.openId) {
+    throw new Error("User openId is required for upsert");
   }
 
   const db = await getDb();
@@ -31,11 +31,11 @@ export async function upsertUser(user: InsertUser): Promise<void> {
 
   try {
     const values: InsertUser = {
-      email: user.email,
+      openId: user.openId,
     };
     const updateSet: Record<string, unknown> = {};
 
-    const textFields = ["name"] as const;
+    const textFields = ["name", "email", "loginMethod"] as const;
     type TextField = (typeof textFields)[number];
 
     const assignNullable = (field: TextField) => {
@@ -55,7 +55,7 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     if (user.role !== undefined) {
       values.role = user.role;
       updateSet.role = user.role;
-    } else if (user.email === ENV.ownerEmail) {
+    } else if (user.openId === ENV.ownerOpenId) {
       values.role = 'admin';
       updateSet.role = 'admin';
     }
@@ -75,6 +75,18 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
   }
+}
+
+export async function getUserByOpenId(openId: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user: database not available");
+    return undefined;
+  }
+
+  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
 }
 
 // Trial Applications Database Functions
@@ -119,6 +131,63 @@ export async function updateTrialApplicationStatus(id: number, status: string, n
   }
 
   await db.update(trialApplications).set(updateData).where(eq(trialApplications.id, id));
+}
+
+// Username/Password Authentication Functions
+export async function getUserByUsername(username: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user: database not available");
+    return undefined;
+  }
+
+  const result = await db.select().from(users).where(eq(users.username, username)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user: database not available");
+    return undefined;
+  }
+
+  const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createUserWithPassword(user: {
+  username: string;
+  passwordHash: string;
+  name?: string;
+  email?: string;
+  role?: "user" | "admin";
+}) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const result = await db.insert(users).values({
+    username: user.username,
+    passwordHash: user.passwordHash,
+    name: user.name || null,
+    email: user.email || null,
+    role: user.role || "user",
+    loginMethod: "password",
+    lastSignedIn: new Date(),
+  });
+
+  return result;
+}
+
+export async function updateUserLastSignedIn(id: number) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  await db.update(users).set({ lastSignedIn: new Date() }).where(eq(users.id, id));
 }
 
 // TODO: add feature queries here as your schema grows.
