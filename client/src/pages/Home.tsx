@@ -118,9 +118,11 @@ export default function Home() {
                   </Button>
                 </div>
               ) : (
-                <Button variant="outline" onClick={() => window.location.href = getLoginUrl()}>
-                  登录
-                </Button>
+                <Link href="/login">
+                  <Button variant="outline">
+                    登录
+                  </Button>
+                </Link>
               )}
               <Link href="/trial-application">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
